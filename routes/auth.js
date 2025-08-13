@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 const User = require("../models/User"); // Your Mongoose User model
 
@@ -57,12 +56,6 @@ router.post("/login2", async (req, res) => {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    // Generate JWT token
-    const token = jwt.sign(
-      { id: user._id, email: user.email },
-      process.env.JWT_SECRET || "yoursecretkey",
-      { expiresIn: "1h" }
-    );
 
     res.json({
       message: "Login successful",
