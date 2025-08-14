@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
+//const bcrypt = require("bcrypt");
 
 const User = require("../models/User"); // Your Mongoose User model
 
@@ -21,10 +21,10 @@ router.post("/register2", async (req, res) => {
     }
 
     // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+   // const hashedPassword = await bcrypt.hash(password, 10);
 
     // Save user
-    const newUser = new User({ email, password: hashedPassword });
+    const newUser = new User({ email, password });
     await newUser.save();
 
     res.status(201).json({ message: "User registered successfully" });
